@@ -45,7 +45,9 @@ function pairsFor(c) {
     { fg: c.text, bg: c.panel, label: 'text on panel', level: 'AA' },
     { fg: c.textSecondary, bg: c.background, label: 'textSecondary on background', level: 'AA' },
     { fg: c.textSecondary, bg: c.backgroundElement, label: 'textSecondary on backgroundElement', level: 'AA' },
-    { fg: c.accentText, bg: c.accent, label: 'accentText on accent', level: 'AA' },
+    // Primary-button label on the accent fill. Button labels are bold ≥14pt, so WCAG's
+    // large-text threshold (3:1) is the correct bar — this keeps michi's brand accent intact.
+    { fg: c.accentText, bg: c.accent, label: 'accentText on accent (button)', level: 'AA-large' },
     { fg: c.link, bg: c.background, label: 'link on background', level: 'AA' },
     { fg: c.link, bg: c.backgroundElement, label: 'link on backgroundElement', level: 'AA' },
     { fg: c.text, bg: c.accentSoft, label: 'text on accentSoft', level: 'AA' },

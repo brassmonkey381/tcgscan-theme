@@ -124,12 +124,22 @@ export declare const Spacing: {
     readonly s48: 48;
     readonly s64: 64;
 };
+/**
+ * Fixed radius scale (michi-maker's base values). tcgscan-app uses the fixed export; michi
+ * resolves radius PER VARIANT from `variants.ts` (some variants round more), so michi keeps its
+ * own — this is the neutral base, which is also exactly tcgscan's prior 5 values.
+ */
 export declare const Radius: {
+    readonly xs: 2;
+    readonly tag: 3;
     readonly sm: 4;
+    readonly thumb: 6;
     /** Buttons, inputs, chips. */
     readonly control: 8;
     /** Cards and panels. */
     readonly panel: 12;
+    readonly actionBar: 14;
+    readonly lg: 16;
     /** Bottom sheets and modals. */
     readonly sheet: 20;
     /** Fully rounded. */

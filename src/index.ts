@@ -20,7 +20,19 @@ export {
   type ThemeColor,
   type ThemeVariant,
   type ThemeVariantColors,
-} from './palettes';
+} from './palettes.ts';
+
+// The canonical variant data (michi-maker's richer colors + binder surface + per-variant radius).
+// michi consumes these directly and keeps its own module-load resolution; tcgscan's Themes above
+// are derived from them. See variants.ts.
+export {
+  VARIANTS,
+  VARIANT_LIST,
+  isDarkHex,
+  type Tokens,
+  type VariantId,
+  type PaletteTokens,
+} from './variants.ts';
 
 export {
   Type,
@@ -30,6 +42,6 @@ export {
   Breakpoints,
   type TypeToken,
   type TextStyleToken,
-} from './tokens';
+} from './tokens.ts';
 
-export { Fonts, BottomTabInset } from './platform';
+export { Fonts, BottomTabInset } from './platform.ts';

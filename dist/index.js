@@ -9,6 +9,10 @@
  * Apps resolve the active scheme/variant into a live `Palette` in their own provider; this
  * package supplies the token DATA and the type contracts, not the React runtime. See AGENTS.md.
  */
-export { Colors, Chrome, Themes, THEME_VARIANTS, THEME_VARIANT_LABELS, } from './palettes';
-export { Type, Spacing, Radius, Content, Breakpoints, } from './tokens';
-export { Fonts, BottomTabInset } from './platform';
+export { Colors, Chrome, Themes, THEME_VARIANTS, THEME_VARIANT_LABELS, } from "./palettes.js";
+// The canonical variant data (michi-maker's richer colors + binder surface + per-variant radius).
+// michi consumes these directly and keeps its own module-load resolution; tcgscan's Themes above
+// are derived from them. See variants.ts.
+export { VARIANTS, VARIANT_LIST, isDarkHex, } from "./variants.js";
+export { Type, Spacing, Radius, Content, Breakpoints, } from "./tokens.js";
+export { Fonts, BottomTabInset } from "./platform.js";
