@@ -36,7 +36,7 @@ const NEUTRAL = {
         // accentSoft is a TEXT-BEARING chip/cell tint (both apps put labels on it), so it's a pale
         // fill, not michi's old medium accent — nudged to clear WCAG-AA for text/link on top.
         accentSoft: '#E7EEFD',
-        link: '#185FEB',
+        link: '#1656DA',
         selectionSoft: '#e8f0fe',
         selectionTint: '#dbe7ff',
         white: '#ffffff',
@@ -59,11 +59,12 @@ const NEUTRAL = {
         onDark: '#9a9a9a',
         onDarkMuted: '#8a8a96',
         onDarkMuted2: '#8a8a93',
-        // Status colors nudged to clear 4.5:1 as small text on the lightest surface (WCAG-AA).
+        // Status colors nudged to clear 4.5:1 as small text on the raised light surfaces too
+        // (panel/backgroundElement), not just the base background.
         danger: '#C43B4D',
         dangerAlt: '#c0392b',
         dangerBg: '#fdeaea',
-        success: '#11814A',
+        success: '#0F7442',
         chrome: '#14131A',
         chromeDeep: '#11111a',
         chromeDeepest: '#0d0d12',
@@ -84,6 +85,11 @@ const NEUTRAL = {
         imagePlaceholder: 'rgba(127,127,127,0.12)',
     },
     paletteDark: {
+        // Dark accent is BRIGHTER than the light-mode blue (more visible as a fill/icon/active state
+        // on a near-black ground) and pairs with DARK button text — 6:1, vs 3.7:1 for white on the
+        // mid-blue. Same convention michi's Dark Vault already uses.
+        accent: '#5B8DF5',
+        accentText: '#0F1115',
         link: '#8AB4FF',
         accentSoft: '#17233C',
         selectionSoft: 'rgba(59,130,246,0.16)',
@@ -144,7 +150,7 @@ const VINTAGE = make({
         dark: { text: '#F3E9D8', background: '#1C150D', backgroundElement: '#2A2116', backgroundSelected: '#38301F', textSecondary: '#B8A387' },
     },
     palette: {
-        accent: '#A9743E', accentSoft: '#F1E2CB', link: '#8A5626',
+        accent: '#A9743E', accentSoft: '#F1E2CB', link: '#7E4C1E',
         selectionSoft: '#F1E6D3', selectionTint: '#E4D2B2',
         surface: '#FBF6EC', panel: '#EFE6D6', panelAlt: '#F5EEE0',
         controlBorder: '#DECBAE', handle: '#CBB491', hairline: '#E7DAC5', hairlineStrong: '#D8C6A8',
@@ -154,6 +160,7 @@ const VINTAGE = make({
         chrome: '#241C12', chromeDeep: '#1C150D', chromeDeepest: '#150F08', toast: '#2A2116',
     },
     paletteDark: {
+        accent: '#D09A5A', accentText: '#1C150D',
         link: '#E0B784', accentSoft: '#2E2417',
         selectionSoft: 'rgba(169,116,62,0.18)', selectionTint: 'rgba(169,116,62,0.32)',
         surface: '#241C12', panel: '#2A2116', panelAlt: '#221A10',
@@ -178,16 +185,17 @@ const POP = make({
         dark: { text: '#F4F6FF', background: '#0F1020', backgroundElement: '#1B1D33', backgroundSelected: '#282B47', textSecondary: '#B4B9CC' },
     },
     palette: {
-        accent: '#2B6BFF', accentSoft: '#E0EAFF', link: '#1D5AF0',
+        accent: '#2B6BFF', accentSoft: '#E0EAFF', link: '#1A52E0',
         selectionSoft: '#E4ECFF', selectionTint: '#CBDBFF',
         surface: '#FFFFFF', panel: '#EEF1FF', panelAlt: '#F3F5FF',
         controlBorder: '#D5DEF8', handle: '#C3CEF0', hairline: '#E8ECFA', hairlineStrong: '#D9DFF4',
         ink: '#141726', ink2: '#1E2233', ink3: '#2C3040', ink4: '#3A3E4E',
         muted: '#565B70', muted2: '#7A8098', muted3: '#969CB2', muted4: '#B4B9CC',
-        danger: '#D61F38', dangerAlt: '#D61F38', dangerBg: '#FFE3E7', success: '#0B824C',
+        danger: '#D61F38', dangerAlt: '#D61F38', dangerBg: '#FFE3E7', success: '#0A7043',
         chrome: '#191A2B', chromeDeep: '#141527', chromeDeepest: '#0F1020', toast: '#20223A',
     },
     paletteDark: {
+        accent: '#5E8CFF', accentText: '#0F1020',
         link: '#8FB4FF', accentSoft: '#1B2A4A',
         selectionSoft: 'rgba(43,107,255,0.18)', selectionTint: 'rgba(43,107,255,0.34)',
         surface: '#1B1D33', panel: '#232647', panelAlt: '#181A30',

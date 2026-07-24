@@ -36,42 +36,60 @@ function contrast(fg, bg) {
   return (hi + 0.05) / (lo + 0.05);
 }
 
-/** Pairs that are genuinely composited on screen, for one scheme's palette. */
+/**
+ * Pairs genuinely composited on screen. tcgscan text sits on FOUR surfaces (background,
+ * backgroundElement, backgroundSelected, panel — see the app's browseTheme adapter), so every
+ * readable text role is checked against all of them, not just background. `text` and
+ * `textSecondary` also carry a COMFORT target beyond the 4.5 AA floor — "passes AA" and "reads
+ * easily" differ, and a 4.6:1 secondary label on a busy dark surface is legal but tiring. Comfort
+ * misses are reported, not failed, so weak-but-legal pairs stay visible.
+ */
 function pairsFor(c) {
-  return [
-    { fg: c.text, bg: c.background, label: 'text on background', level: 'AA' },
-    { fg: c.text, bg: c.backgroundElement, label: 'text on backgroundElement', level: 'AA' },
-    { fg: c.text, bg: c.backgroundSelected, label: 'text on backgroundSelected', level: 'AA' },
-    { fg: c.text, bg: c.panel, label: 'text on panel', level: 'AA' },
-    { fg: c.textSecondary, bg: c.background, label: 'textSecondary on background', level: 'AA' },
-    { fg: c.textSecondary, bg: c.backgroundElement, label: 'textSecondary on backgroundElement', level: 'AA' },
-    // Primary-button label on the accent fill. Button labels are bold ≥14pt, so WCAG's
-    // large-text threshold (3:1) is the correct bar — this keeps michi's brand accent intact.
-    { fg: c.accentText, bg: c.accent, label: 'accentText on accent (button)', level: 'AA-large' },
-    { fg: c.link, bg: c.background, label: 'link on background', level: 'AA' },
-    { fg: c.link, bg: c.backgroundElement, label: 'link on backgroundElement', level: 'AA' },
-    { fg: c.text, bg: c.accentSoft, label: 'text on accentSoft', level: 'AA' },
-    { fg: c.textSecondary, bg: c.accentSoft, label: 'textSecondary on accentSoft', level: 'AA' },
-    { fg: c.link, bg: c.accentSoft, label: 'link on accentSoft', level: 'AA' },
-    { fg: c.link, bg: c.panel, label: 'link on panel', level: 'AA' },
-    { fg: c.success, bg: c.background, label: 'success on background', level: 'AA' },
-    { fg: c.danger, bg: c.background, label: 'danger on background', level: 'AA' },
-    { fg: c.warning, bg: c.background, label: 'warning on background', level: 'AA' },
-    {
-      fg: c.accent,
-      bg: c.background,
-      label: 'accent on background',
-      level: 'AA-large',
-      note: 'fills, borders and icons — accent-colored text uses `link`',
-    },
-    {
-      fg: c.hairlineStrong,
-      bg: c.background,
-      label: 'hairlineStrong on background',
-      level: 'info',
-      note: 'decorative divider; control affordance comes from the surface fill',
-    },
+  const surfaces = [
+    ['background', c.background],
+    ['backgroundElement', c.backgroundElement],
+    ['backgroundSelected', c.backgroundSelected],
+    ['panel', c.panel],
   ];
+  const pairs = [];
+  for (const [name, bg] of surfaces) {
+    pairs.push({ fg: c.text, bg, label: `text on ${name}`, level: 'AA', comfort: 7 });
+  }
+  for (const [name, bg] of surfaces) {
+    pairs.push({ fg: c.textSecondary, bg, label: `textSecondary on ${name}`, level: 'AA', comfort: 5 });
+  }
+  // michi's secondary/tertiary text ramp (muted2/muted3 render as meta text; muted4 is decorative
+  // only). These are INFORMATIONAL: michi's ramp deliberately trades contrast for tonal tiers on
+  // its dim steps, and the physics of a light-mode ramp can't make three distinct dim tiers all
+  // clear 4.5 on white — that's a michi design call, not a gate. Reported so the values are visible.
+  for (const [name, bg] of [['background', c.background], ['backgroundElement', c.backgroundElement]]) {
+    pairs.push({ fg: c.muted2, bg, label: `muted2 on ${name}`, level: 'info' });
+    pairs.push({ fg: c.muted3, bg, label: `muted3 on ${name}`, level: 'info' });
+  }
+  for (const [name, bg] of surfaces) {
+    pairs.push({ fg: c.link, bg, label: `link on ${name}`, level: 'AA', comfort: 5 });
+  }
+  for (const [name, bg] of [['background', c.background], ['panel', c.panel], ['backgroundElement', c.backgroundElement]]) {
+    pairs.push({ fg: c.success, bg, label: `success on ${name}`, level: 'AA' });
+    pairs.push({ fg: c.danger, bg, label: `danger on ${name}`, level: 'AA' });
+  }
+  pairs.push({ fg: c.warning, bg: c.background, label: 'warning on background', level: 'AA' });
+  // Primary-button label on accent — bold, so WCAG large-text threshold (3:1).
+  pairs.push({ fg: c.accentText, bg: c.accent, label: 'accentText on accent (button)', level: 'AA-large' });
+  // accentSoft is a text-bearing chip/cell tint (labels sit on it).
+  pairs.push({ fg: c.text, bg: c.accentSoft, label: 'text on accentSoft', level: 'AA' });
+  pairs.push({ fg: c.textSecondary, bg: c.accentSoft, label: 'textSecondary on accentSoft', level: 'AA' });
+  pairs.push({ fg: c.link, bg: c.accentSoft, label: 'link on accentSoft', level: 'AA' });
+  // Accent as a fill/icon/border (accent-colored TEXT uses `link`).
+  pairs.push({
+    fg: c.accent, bg: c.background, label: 'accent on background', level: 'AA-large',
+    note: 'fills, borders and icons — accent-colored text uses `link`',
+  });
+  pairs.push({
+    fg: c.hairlineStrong, bg: c.background, label: 'hairlineStrong on background', level: 'info',
+    note: 'decorative divider; control affordance comes from the surface fill',
+  });
+  return pairs;
 }
 
 /** The fixed dark chrome (camera, toast, prompt) — one set, scheme-independent. */
@@ -95,29 +113,35 @@ function chromePairs() {
 }
 
 const showAll = process.argv.includes('--all');
+const showLow = process.argv.includes('--low'); // also print comfort misses (pass AA, below target)
 let failures = 0;
 let checked = 0;
+let lows = 0;
 
 function report(scope, pairs) {
   const rows = pairs.map((p) => {
     const ratio = contrast(p.fg, p.bg);
     const min = THRESHOLD[p.level];
-    return { ...p, ratio, min, ok: p.level === 'info' || ratio >= min };
+    const ok = p.level === 'info' || ratio >= min;
+    const low = ok && p.comfort && ratio < p.comfort; // passes AA but below the comfort target
+    return { ...p, ratio, min, ok, low };
   });
   checked += rows.length;
   const bad = rows.filter((r) => !r.ok);
   failures += bad.length;
+  lows += rows.filter((r) => r.low).length;
 
-  const shown = showAll ? rows : bad;
+  const shown = showAll ? rows : rows.filter((r) => !r.ok || (showLow && r.low));
   if (!shown.length) {
     console.log(`  ${scope}: all ${rows.length} pairs pass`);
     return;
   }
   console.log(`  ${scope}:`);
   for (const r of shown) {
-    const mark = r.level === 'info' ? 'info' : r.ok ? 'ok  ' : 'FAIL';
+    const mark = r.level === 'info' ? 'info' : !r.ok ? 'FAIL' : r.low ? 'low ' : 'ok  ';
+    const bar = r.level === 'info' ? '(informational)' : !r.ok ? `(needs ${r.min})` : r.low ? `(AA ok, comfort ${r.comfort})` : '';
     console.log(
-      `    ${mark} ${r.ratio.toFixed(2)}:1 ${r.level === 'info' ? '(informational)' : `(needs ${r.min})`} ${r.label}  ${r.fg} on ${r.bg}` +
+      `    ${mark} ${r.ratio.toFixed(2)}:1 ${bar} ${r.label}  ${r.fg} on ${r.bg}` +
         (r.ok || !r.note ? '' : `\n         note: ${r.note}`),
     );
   }
@@ -136,7 +160,7 @@ for (const [variant, schemes] of Object.entries(Themes)) {
 console.log('chrome (fixed, scheme-independent):');
 report('chrome', chromePairs());
 
-console.log(`\n${checked - failures}/${checked} pairs pass.`);
+console.log(`\n${checked - failures}/${checked} pairs pass AA. ${lows} pass AA but miss the comfort target (run --low to list).`);
 if (failures) {
   console.log(`${failures} FAILING — fix the token, or justify it in the design notes.`);
   process.exit(1);

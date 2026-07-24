@@ -79,6 +79,8 @@ declare const NEUTRAL: {
         imagePlaceholder: string;
     };
     paletteDark: {
+        accent: string;
+        accentText: string;
         link: string;
         accentSoft: string;
         selectionSoft: string;
@@ -201,6 +203,8 @@ export declare const VARIANTS: {
             imagePlaceholder: string;
         };
         paletteDark: {
+            accent: string;
+            accentText: string;
             link: string;
             accentSoft: string;
             selectionSoft: string;
