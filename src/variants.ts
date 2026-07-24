@@ -36,7 +36,7 @@ const NEUTRAL = {
       background: '#131417',
       backgroundElement: '#212225',
       backgroundSelected: '#2E3135',
-      textSecondary: '#B0B4BA',
+      textSecondary: '#C4C8CE',
     },
   },
   palette: {
@@ -178,7 +178,7 @@ function make(o: Deep): Tokens {
 const VINTAGE = make({
   colors: {
     light: { text: '#2E2317', background: '#F7EFE0', backgroundElement: '#EFE6D6', backgroundSelected: '#E4D6BF', textSecondary: '#6E5B42' },
-    dark: { text: '#F3E9D8', background: '#1C150D', backgroundElement: '#2A2116', backgroundSelected: '#38301F', textSecondary: '#B8A387' },
+    dark: { text: '#F3E9D8', background: '#1C150D', backgroundElement: '#2A2116', backgroundSelected: '#38301F', textSecondary: '#D2C0A4' },
   },
   palette: {
     accent: '#A9743E', accentSoft: '#F1E2CB', link: '#7E4C1E',
@@ -214,7 +214,7 @@ const VINTAGE = make({
 const POP = make({
   colors: {
     light: { text: '#141726', background: '#FFFFFF', backgroundElement: '#EEF1FF', backgroundSelected: '#DEE6FF', textSecondary: '#565B70' },
-    dark: { text: '#F4F6FF', background: '#0F1020', backgroundElement: '#1B1D33', backgroundSelected: '#282B47', textSecondary: '#B4B9CC' },
+    dark: { text: '#F4F6FF', background: '#0F1020', backgroundElement: '#1B1D33', backgroundSelected: '#282B47', textSecondary: '#C6CADB' },
   },
   palette: {
     accent: '#2B6BFF', accentSoft: '#E0EAFF', link: '#1A52E0',
@@ -248,7 +248,7 @@ const POP = make({
 
 // ── Dark Vault (dark-first: both schemes render dark) ────────────────────────
 const VAULT_DARK: ColorRoles = {
-  text: '#F2F3F7', background: '#0E0F14', backgroundElement: '#1A1B22', backgroundSelected: '#262832', textSecondary: '#9A9CA8',
+  text: '#F2F3F7', background: '#0E0F14', backgroundElement: '#1A1B22', backgroundSelected: '#262832', textSecondary: '#BEC0CA',
 };
 const VAULT = make({
   colors: { light: VAULT_DARK, dark: VAULT_DARK },
