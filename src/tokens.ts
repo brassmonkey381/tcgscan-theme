@@ -61,10 +61,19 @@ export const Type = {
 export type TypeToken = keyof typeof Type;
 
 /**
- * Spacing. Word keys are original and in use; the numeric aliases are the michi-shaped names for
- * new code. Same values, pick either.
+ * Spacing. Two vocabularies over one set of values:
+ *
+ *   - Ordinal keys (`half`…`six`) are michi-maker's original COARSE scale — each step roughly
+ *     doubles (2,4,8,16,24,32,64). michi uses these ~570×; keep using them there.
+ *   - Value-named keys (`s2`…`s64`) are a complete 2px GRID, so a finer layout (tcgscan-app's)
+ *     tokenizes exactly with no rounding. `s8 === two`, `s16 === three`, etc.
+ *
+ * The scale is a superset serving both apps; pick ONE vocabulary per app and stay consistent.
+ * A future density change edits these numbers in one place. Truly arbitrary one-off values
+ * (odd hairline nudges) are fine to leave raw — a scale should not grow a token for every integer.
  */
 export const Spacing = {
+  // Ordinal (coarse) — michi-maker's scale.
   half: 2,
   one: 4,
   two: 8,
@@ -72,6 +81,21 @@ export const Spacing = {
   four: 24,
   five: 32,
   six: 64,
+  // Value grid (2px) — the same values plus the in-between steps, named by their pixel value.
+  s2: 2,
+  s4: 4,
+  s6: 6,
+  s8: 8,
+  s10: 10,
+  s12: 12,
+  s14: 14,
+  s16: 16,
+  s18: 18,
+  s20: 20,
+  s24: 24,
+  s32: 32,
+  s48: 48,
+  s64: 64,
 } as const;
 
 export const Radius = {

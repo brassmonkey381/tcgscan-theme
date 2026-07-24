@@ -90,8 +90,16 @@ export declare const Type: {
 };
 export type TypeToken = keyof typeof Type;
 /**
- * Spacing. Word keys are original and in use; the numeric aliases are the michi-shaped names for
- * new code. Same values, pick either.
+ * Spacing. Two vocabularies over one set of values:
+ *
+ *   - Ordinal keys (`half`…`six`) are michi-maker's original COARSE scale — each step roughly
+ *     doubles (2,4,8,16,24,32,64). michi uses these ~570×; keep using them there.
+ *   - Value-named keys (`s2`…`s64`) are a complete 2px GRID, so a finer layout (tcgscan-app's)
+ *     tokenizes exactly with no rounding. `s8 === two`, `s16 === three`, etc.
+ *
+ * The scale is a superset serving both apps; pick ONE vocabulary per app and stay consistent.
+ * A future density change edits these numbers in one place. Truly arbitrary one-off values
+ * (odd hairline nudges) are fine to leave raw — a scale should not grow a token for every integer.
  */
 export declare const Spacing: {
     readonly half: 2;
@@ -101,6 +109,20 @@ export declare const Spacing: {
     readonly four: 24;
     readonly five: 32;
     readonly six: 64;
+    readonly s2: 2;
+    readonly s4: 4;
+    readonly s6: 6;
+    readonly s8: 8;
+    readonly s10: 10;
+    readonly s12: 12;
+    readonly s14: 14;
+    readonly s16: 16;
+    readonly s18: 18;
+    readonly s20: 20;
+    readonly s24: 24;
+    readonly s32: 32;
+    readonly s48: 48;
+    readonly s64: 64;
 };
 export declare const Radius: {
     readonly sm: 4;
