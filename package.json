@@ -1,0 +1,33 @@
+{
+  "name": "tcgscan-theme",
+  "version": "0.1.0",
+  "description": "Shared design tokens for the TCGScan apps: brand color palettes (light/dark, four variants), the type scale, spacing and radii, and a WCAG contrast checker. The single source both tcgscan-app and michi-maker theme from.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "check": "tsc --noEmit",
+    "check:contrast": "node scripts/check-contrast.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brassmonkey381/tcgscan-theme.git"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "react-native": ">=0.73"
+  },
+  "peerDependenciesMeta": {
+    "react-native": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "react-native": "0.85.3",
+    "typescript": "~6.0.3"
+  }
+}
