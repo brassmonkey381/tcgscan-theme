@@ -6,10 +6,18 @@ for the export map.
 
 ## Hard rules
 
-1. **Keep the data layer import-free.** `palettes.ts` and `tokens.ts` must not import
-   `react-native` or anything else. That is what lets the contrast checker run under plain Node and
-   what keeps the package immune to the SDK 56/57 skew between the two apps. Anything needing a
-   platform API goes in `platform.ts` (the only RN-touching file; RN is an *optional* peer dep).
+0. **`variants.ts` is the canonical color source; `palettes.ts` is a derived view.** The four
+   brand variants (michi-maker's richer 44-key palette + binder surface + per-variant radius) live
+   in `variants.ts`. **michi consumes `VARIANTS` directly** (it keeps its own module-load +
+   luminance resolution). **tcgscan consumes `palettes.ts`**, which flattens each variant into an
+   explicit light/dark `Palette` (michi's luminance rule applied at build time). Change a colour in
+   `variants.ts` and BOTH apps get it. Do NOT hand-edit `palettes.ts` values — they're derived.
+1. **Keep the data layer import-free.** `variants.ts`, `palettes.ts` and `tokens.ts` must not
+   import `react-native` or anything else. That lets the contrast checker run under plain Node and
+   keeps the package immune to the SDK 56/57 skew between the two apps. Anything needing a platform
+   API goes in `platform.ts` (the only RN-touching file; RN is an *optional* peer dep). Cross-file
+   imports use `.ts` extensions (tsconfig `rewriteRelativeImportExtensions` rewrites them on emit)
+   so Node can load the source directly.
 2. **No app code here.** No routing, no state stores, no user data, no components — token DATA and
    type contracts only. Each app owns its own theme provider and `useTheme()`. (Same charter spirit
    as `tcgscan-browse`: this is the seam, not an app.)
@@ -20,7 +28,9 @@ for the export map.
    declarations live here; binaries can't travel through a JS package on native.
 5. **Contrast is gated, not eyeballed.** Any color change must keep `npm run check:contrast` green
    (WCAG 2.1: 4.5 body / 3.0 large + non-text). If a pair must fail, justify it in a comment where
-   the pair is defined, the way the existing `info`-level pairs are.
+   the pair is defined, the way the existing `info`-level pairs are. The variants were tuned so all
+   152 pairs pass — a few interactive/status tokens (`accentSoft` as a text-bearing tint,
+   `success`/`danger`/`warning`) carry AA nudges off michi's raw values; keep them AA if you retint.
 
 ## Release workflow
 
@@ -40,8 +50,11 @@ consumers install via `github:` with no build step — never leave `dist/` stale
 
 ## Layout
 
-- `src/palettes.ts` — color data (import-free): `Colors`, `Themes`, `Chrome`, variant list/labels.
+- `src/variants.ts` — the CANONICAL variant data (import-free): michi's `VARIANTS`, `VARIANT_LIST`,
+  `Tokens` type, `isDarkHex`. michi consumes this directly.
+- `src/palettes.ts` — tcgscan's DERIVED view (import-free): flattens `VARIANTS` into explicit
+  light/dark `Themes` + `Colors`, plus the fixed `Chrome` layer and variant labels.
 - `src/tokens.ts` — non-color data (import-free): `Type`, `Spacing`, `Radius`, `Content`, `Breakpoints`.
 - `src/platform.ts` — `Fonts`, `BottomTabInset` via `Platform.select` (imports react-native).
 - `src/index.ts` — the single public surface.
-- `scripts/check-contrast.mjs` — the WCAG audit (reads `src/palettes.ts`).
+- `scripts/check-contrast.mjs` — the WCAG audit (reads `src/palettes.ts`, i.e. tcgscan's view).
