@@ -239,8 +239,78 @@ const VAULT = make({
     },
     slotBacking: '#20222C',
 });
+// ── TCGScan Brand (deep navy + electric blue, from the brand sheet) ──────────
+/**
+ * THE BRAND VARIANT. Everything else in this file predates the TCGScan brand sheet; `Themes.tcgscan`
+ * used to be an alias of NEUTRAL, so the app that carries the brand was the one wearing michi's
+ * gallery-neutral gray while its own marketing site ran deep navy with an electric-blue glow.
+ *
+ * Values come from the brand sheet's core palette: Deep Navy #081526, Midnight #11233A, Slate Gray
+ * #B9C5D6, ROI Green #2ED47A. Electric Blue #1F8FFF is NOT used as a fill — it fails 4.5:1 under
+ * white text — so it stays a glow/icon color in the app's web layer and the fills here use a
+ * WCAG-safe neighbour instead. Dark is the brand's real home; light stays clean and merely
+ * cool-tinted so the light-scheme users of the same variant get the family resemblance, not a
+ * washed-out navy.
+ *
+ * NEUTRAL is deliberately left alone: michi-maker consumes VARIANTS.neutral directly as its own
+ * gallery scheme, and this variant is intentionally absent from VARIANT_LIST so michi's palette
+ * picker still offers exactly the four schemes it always has.
+ */
+const TCGSCAN_BRAND = make({
+    colors: {
+        light: {
+            text: '#08121F',
+            background: '#FFFFFF',
+            backgroundElement: '#EDF2F9',
+            backgroundSelected: '#E1ECF8',
+            textSecondary: '#4A5A70',
+        },
+        dark: {
+            text: '#FFFFFF',
+            background: '#081526',
+            backgroundElement: '#11233A',
+            backgroundSelected: '#1B3454',
+            textSecondary: '#B9C5D6',
+        },
+    },
+    palette: {
+        accent: '#2F6FED', accentText: '#FFFFFF', accentSoft: '#E4EDFD', link: '#1656DA',
+        selectionSoft: '#E8F0FE', selectionTint: '#D8E6FB',
+        surface: '#FFFFFF', panel: '#EDF2F9', panelAlt: '#F5F8FC',
+        controlBorder: '#D5E0EE', handle: '#C2D0E2', hairline: '#E6ECF4', hairlineStrong: '#D2DCE8',
+        ink: '#0E1B2B', ink2: '#1B2B3F', ink3: '#2B3D53', ink4: '#3B4E66',
+        muted: '#4A5A70', muted2: '#647389', muted3: '#7C8A9E', muted4: '#98A4B5',
+        danger: '#C43B4D', dangerAlt: '#B23346', dangerBg: '#FBE9EC', success: '#0F7442',
+        warning: '#8A5A00',
+        chrome: '#0C1B2D', chromeDeep: '#081526', chromeDeepest: '#050E1A', toast: '#11233A',
+    },
+    paletteDark: {
+        // A fill on navy, with DARK text on top (the same convention every dark scheme here uses).
+        accent: '#3D9BFF', accentText: '#06101C',
+        // Accent as TEXT. Lighter than the fill so it clears 4.5:1 on navy and on the raised surfaces.
+        link: '#7FC0FF', accentSoft: '#12294A',
+        selectionSoft: 'rgba(61,155,255,0.16)', selectionTint: 'rgba(61,155,255,0.30)',
+        surface: '#0C1E33', panel: '#11233A', panelAlt: '#0A1B2D',
+        controlBorder: '#2A4767', handle: '#3A5878', hairline: '#16293E', hairlineStrong: '#23394F',
+        ink: '#F3F7FC', ink2: '#E3EAF3', ink3: '#C9D4E1', ink4: '#AFBDCF',
+        muted: '#A3B3C6', muted2: '#8698AE', muted3: '#70839B', muted4: '#5C6F86',
+        // The brand sheet's ROI Green, which is why value and gain read green in the app now.
+        danger: '#FF7385', dangerBg: 'rgba(255,115,133,0.16)', success: '#2ED47A',
+        warning: '#F0A35B',
+        chrome: '#0C1B2D', chromeDeep: '#081526', chromeDeepest: '#050E1A', toast: '#152B45',
+    },
+    surface: {
+        mat: '#0A1B2D', pocketFill: 'rgba(255,255,255,0.04)', pocketBorder: 'rgba(185,197,214,0.20)',
+        pocketInnerShadow: 'rgba(0,0,0,0.32)', cardFrame: '#11233A',
+        cardFrameBorder: 'rgba(185,197,214,0.16)', foilSheen: 'rgba(56,184,255,0.14)',
+        insertHighlight: 'rgba(255,255,255,0.14)', insertBorder: 'rgba(0,0,0,0.30)',
+        selection: '#3D9BFF',
+    },
+    slotBacking: '#132741',
+});
 export const VARIANTS = {
     neutral: NEUTRAL,
+    tcgscan: TCGSCAN_BRAND,
     vintage: VINTAGE,
     pop: POP,
     vault: VAULT,

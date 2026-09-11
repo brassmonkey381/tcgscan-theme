@@ -24,12 +24,13 @@ const themeFor = (v) => ({
     dark: resolve(v, 'dark'),
 });
 /**
- * Brand variants for tcgscan-app. `tcgscan` is michi's `neutral` scheme (the key stays `tcgscan`
- * so the app's saved preference and variant type are unaffected); the rest map 1:1. tcgscan thus
+ * Brand variants for tcgscan-app. `tcgscan` is now the BRAND scheme (deep navy + electric blue,
+ * see variants.ts) rather than michi's `neutral`, which it aliased before the brand pass; the rest
+ * map 1:1. The key is unchanged, so every saved preference and the variant type still resolve. tcgscan thus
  * ADOPTS michi's values while its 50 consumer files — which read the same key names — are untouched.
  */
 export const Themes = {
-    tcgscan: themeFor(VARIANTS.neutral),
+    tcgscan: themeFor(VARIANTS.tcgscan),
     vintage: themeFor(VARIANTS.vintage),
     pop: themeFor(VARIANTS.pop),
     vault: themeFor(VARIANTS.vault),

@@ -255,6 +255,7 @@ export declare const VARIANTS: {
         };
         slotBacking: string;
     };
+    readonly tcgscan: Tokens;
     readonly vintage: Tokens;
     readonly pop: Tokens;
     readonly vault: Tokens;
