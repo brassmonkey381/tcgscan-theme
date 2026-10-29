@@ -12,7 +12,7 @@
  * Thresholds are WCAG 2.1: 4.5 for normal body text, 3.0 for large/bold text and for non-text UI
  * that still has to be distinguishable (borders, graphic marks).
  */
-import { Chrome, Themes } from '../src/palettes.ts';
+import { Chrome, ChromeBibo, Themes } from '../src/palettes.ts';
 
 const THRESHOLD = { AA: 4.5, 'AA-large': 3, info: 0 };
 
@@ -92,15 +92,17 @@ function pairsFor(c) {
   return pairs;
 }
 
-/** The fixed dark chrome (camera, toast, prompt) — one set, scheme-independent. */
-function chromePairs() {
+/** The fixed dark chrome (camera, toast, prompt) — scheme-independent, one set per brand. */
+function chromePairs(Chrome) {
   return [
     { fg: Chrome.text, bg: Chrome.toast, label: 'Chrome.text on toast', level: 'AA' },
     { fg: Chrome.text, bg: Chrome.base, label: 'Chrome.text on base', level: 'AA' },
     { fg: Chrome.text, bg: Chrome.deep, label: 'Chrome.text on deep', level: 'AA' },
     { fg: Chrome.text, bg: Chrome.deepest, label: 'Chrome.text on deepest', level: 'AA' },
     { fg: Chrome.textSecondary, bg: Chrome.toast, label: 'Chrome.textSecondary on toast', level: 'AA' },
-    { fg: Chrome.text, bg: Chrome.accent, label: 'Chrome.text on accent (filled btn)', level: 'AA' },
+    { fg: Chrome.accentText, bg: Chrome.accent, label: 'Chrome.accentText on accent (filled btn)', level: 'AA' },
+    { fg: Chrome.textSecondary, bg: Chrome.base, label: 'Chrome.textSecondary on base', level: 'AA' },
+    { fg: Chrome.link, bg: Chrome.base, label: 'Chrome.link on base', level: 'AA' },
     { fg: Chrome.link, bg: Chrome.toast, label: 'Chrome.link on toast', level: 'AA' },
     {
       fg: Chrome.success,
@@ -173,7 +175,8 @@ for (const [variant, schemes] of Object.entries(Themes)) {
 }
 
 console.log('chrome (fixed, scheme-independent):');
-report('chrome', chromePairs());
+report('chrome', chromePairs(Chrome));
+report('chrome (bibo)', chromePairs(ChromeBibo));
 
 console.log(`\n${checked - failures}/${checked} pairs pass AA. ${lows} pass AA but miss the comfort target (run --low to list).`);
 if (failures) {

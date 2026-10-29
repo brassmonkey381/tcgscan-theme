@@ -63,10 +63,42 @@ export declare const Chrome: {
     readonly text: "#FFFFFF";
     /** Secondary text on chrome surfaces. */
     readonly textSecondary: "#A8ADB8";
-    /** Accent for a FILLED control on chrome (white label on top). */
+    /** Accent for a FILLED control on chrome, with `accentText` on top. */
     readonly accent: "#2F6FED";
+    /** The label on an `accent` fill. */
+    readonly accentText: "#FFFFFF";
     /** Accent as TEXT or an ICON on chrome. */
     readonly link: "#8AB4FF";
+    /** Success mark on chrome (the toast check). */
+    readonly success: "#4ED18C";
+};
+/**
+ * BiBo's chrome (tcgscan-app's rebrand): the same fixed, scheme-independent layer, in the brand's
+ * "pixel-screen hardware" colours (marketing-studio apps/tcgscan/rebrand/SPEC.md): navy screens,
+ * a yellow fill with a navy label, cyan-400 as ink. Same keys as `Chrome`, so an app swaps the
+ * whole layer by choosing which one it exports; michi keeps `Chrome`.
+ */
+export declare const ChromeBibo: {
+    /** Viewfinder and capture controls: the deepest navy, not black. */
+    readonly deepest: "#010F1D";
+    /** Results sheet behind the scan list (navy-900, the mascots' screen colour). */
+    readonly deep: "#02182D";
+    /** Each recognized-card block (navy-800). */
+    readonly base: "#0A2038";
+    /** Action prompt and success toast glass. */
+    readonly toast: "#0A2038F7";
+    /** Hairline on the glass cards: a faint cyan, the pixel glow at rest. */
+    readonly toastBorder: "#3FD8FF26";
+    /** Text on chrome surfaces. */
+    readonly text: "#FFFFFF";
+    /** Secondary text on chrome surfaces. */
+    readonly textSecondary: "#A3B3D1";
+    /** Yellow: Bo's body, the shutter, the one primary. */
+    readonly accent: "#FEC634";
+    /** Text on yellow is always navy-800 (SPEC). */
+    readonly accentText: "#0A2038";
+    /** Cyan-400 as text or an icon: it only ever glows on navy. */
+    readonly link: "#3FD8FF";
     /** Success mark on chrome (the toast check). */
     readonly success: "#4ED18C";
 };
