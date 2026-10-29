@@ -26,6 +26,7 @@ export interface ThemeVariantColors {
  */
 export declare const Themes: {
     readonly tcgscan: ThemeVariantColors;
+    readonly bibo: ThemeVariantColors;
     readonly vintage: ThemeVariantColors;
     readonly pop: ThemeVariantColors;
     readonly vault: ThemeVariantColors;

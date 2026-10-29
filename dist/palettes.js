@@ -31,6 +31,7 @@ const themeFor = (v) => ({
  */
 export const Themes = {
     tcgscan: themeFor(VARIANTS.tcgscan),
+    bibo: themeFor(VARIANTS.bibo),
     vintage: themeFor(VARIANTS.vintage),
     pop: themeFor(VARIANTS.pop),
     vault: themeFor(VARIANTS.vault),
@@ -39,6 +40,7 @@ export const THEME_VARIANTS = Object.keys(Themes);
 /** Display names for the app's Settings picker. */
 export const THEME_VARIANT_LABELS = {
     tcgscan: 'TCGScan',
+    bibo: 'BiBo',
     vintage: 'Vintage',
     pop: 'Pop',
     vault: 'Vault',

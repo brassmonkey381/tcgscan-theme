@@ -112,6 +112,17 @@ function chromePairs() {
   ];
 }
 
+/**
+ * Pairs a variant fails ON PURPOSE, each with its reason. Reported as informational, never hidden:
+ * a justified pair still prints under --all. Keyed `variant:scheme:label`.
+ */
+const JUSTIFIED = {
+  'bibo:light:accent on background':
+    'BiBo yellow is a FILL only (Bo, the primary button), always carrying a navy-800 label that ' +
+    'identifies the control (WCAG 1.4.11 asks for the label, not the fill). Selection marks, ' +
+    'borders and icons on paper use `link` (cyan-ink), never `accent`.',
+};
+
 const showAll = process.argv.includes('--all');
 const showLow = process.argv.includes('--low'); // also print comfort misses (pass AA, below target)
 let failures = 0;
@@ -152,7 +163,11 @@ console.log('WCAG contrast audit — all variants, both schemes\n');
 for (const [variant, schemes] of Object.entries(Themes)) {
   console.log(`${variant}:`);
   for (const scheme of ['light', 'dark']) {
-    report(scheme, pairsFor(schemes[scheme]));
+    const pairs = pairsFor(schemes[scheme]).map((p) => {
+      const why = JUSTIFIED[`${variant}:${scheme}:${p.label}`];
+      return why ? { ...p, level: 'info', note: why } : p;
+    });
+    report(scheme, pairs);
   }
   console.log('');
 }

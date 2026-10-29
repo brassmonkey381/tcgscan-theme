@@ -308,9 +308,75 @@ const TCGSCAN_BRAND = make({
     },
     slotBacking: '#132741',
 });
+// ── BiBo (paper, navy screens, yellow hardware, cyan pixels) ────────────────
+/**
+ * THE BIBO VARIANT: TCGScan rebranded as BiBo (owner, 2026-10-29: one launch, fully rebranded).
+ * Values from marketing-studio apps/tcgscan/rebrand/SPEC.md. One palette, light and dark; the
+ * Palette picker is retired in BiBo, so like `tcgscan` this stays out of VARIANT_LIST.
+ *
+ * Three rules from the spec decide most of it:
+ * - Yellow is a FILL (Bo's body, the primary button). Text on yellow is always navy-800, and
+ *   yellow is never text on a light ground, so `link` is cyan-ink rather than the accent.
+ * - Cyan-400 glows only on navy. On paper, cyan is cyan-ink #00709F.
+ * - ink-muted #4A5878 is the lightest text allowed on white.
+ */
+const BIBO = make({
+    colors: {
+        light: {
+            text: '#0A2038',
+            background: '#F5F7FB',
+            backgroundElement: '#EEF2F8',
+            // Lighter than the spec's line #D9DFEA so cyan-ink links still clear 4.5:1 on a selected row.
+            backgroundSelected: '#E4E9F2',
+            textSecondary: '#4A5878',
+        },
+        dark: {
+            text: '#EAF2FF',
+            background: '#02182D',
+            backgroundElement: '#0A2038',
+            backgroundSelected: '#12295A',
+            textSecondary: '#A3B3D1',
+        },
+    },
+    palette: {
+        accent: '#FEC634', accentText: '#0A2038', accentSoft: '#FFF6DA', link: '#00709F',
+        selectionSoft: '#FFF6DA', selectionTint: '#FFE9A8',
+        surface: '#FFFFFF', panel: '#EEF2F8', panelAlt: '#F5F7FB',
+        controlBorder: '#D9DFEA', handle: '#C3CCDC', hairline: '#D9DFEA', hairlineStrong: '#C3CCDC',
+        ink: '#0A2038', ink2: '#12295A', ink3: '#1E3A78', ink4: '#4A5878',
+        muted: '#4A5878', muted2: '#66728C', muted3: '#8590A6', muted4: '#A3ACBF',
+        danger: '#C2410C', dangerAlt: '#A8380A', dangerBg: '#FDE8DF', success: '#127A4B',
+        warning: '#8A5A00',
+        chrome: '#02182D', chromeDeep: '#02182D', chromeDeepest: '#010F1D', toast: '#0A2038',
+    },
+    paletteDark: {
+        // Yellow stays the fill on navy too, still with navy text on it.
+        accent: '#FEC634', accentText: '#0A2038',
+        // On navy, cyan-400 is legible as text: this is where the pixel glow belongs.
+        link: '#3FD8FF', accentSoft: '#12295A',
+        selectionSoft: 'rgba(63,216,255,0.14)', selectionTint: 'rgba(63,216,255,0.26)',
+        surface: '#0A2038', panel: '#12295A', panelAlt: '#0A2038',
+        controlBorder: '#23407A', handle: '#2E4D8A', hairline: '#23407A', hairlineStrong: '#2E4D8A',
+        ink: '#EAF2FF', ink2: '#D5E2F7', ink3: '#BACBE6', ink4: '#A3B3D1',
+        muted: '#A3B3D1', muted2: '#8496B8', muted3: '#6B7EA3', muted4: '#56698F',
+        danger: '#FF9A6B', dangerBg: 'rgba(194,65,12,0.22)', success: '#4ED18C',
+        warning: '#FFD36B',
+        chrome: '#02182D', chromeDeep: '#02182D', chromeDeepest: '#010F1D', toast: '#0A2038',
+    },
+    surface: {
+        mat: '#FFFFFF', pocketFill: 'rgba(10,32,56,0.04)', pocketBorder: 'rgba(10,32,56,0.16)',
+        pocketInnerShadow: 'rgba(10,32,56,0.06)', cardFrame: '#FFFFFF',
+        cardFrameBorder: 'rgba(10,32,56,0.12)', insertBorder: 'rgba(10,32,56,0.05)',
+        selection: '#00709F',
+    },
+    // Chip 8, button 14, card 18, sheet 28 (SPEC "Shape and space").
+    radius: { thumb: 8, control: 14, panel: 18, actionBar: 14, lg: 18, sheet: 28 },
+    slotBacking: '#EEF2F8',
+});
 export const VARIANTS = {
     neutral: NEUTRAL,
     tcgscan: TCGSCAN_BRAND,
+    bibo: BIBO,
     vintage: VINTAGE,
     pop: POP,
     vault: VAULT,
