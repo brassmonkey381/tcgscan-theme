@@ -14,5 +14,5 @@ export { Colors, Chrome, ChromeBibo, BrandBibo, Themes, THEME_VARIANTS, THEME_VA
 // michi consumes these directly and keeps its own module-load resolution; tcgscan's Themes above
 // are derived from them. See variants.ts.
 export { VARIANTS, VARIANT_LIST, isDarkHex, } from "./variants.js";
-export { Type, Spacing, Radius, Content, Breakpoints, } from "./tokens.js";
+export { Type, TypeBibo, RadiusBibo, Spacing, Radius, Content, Breakpoints, } from "./tokens.js";
 export { Fonts, BottomTabInset } from "./platform.js";

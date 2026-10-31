@@ -160,3 +160,84 @@ export declare const Breakpoints: {
     readonly rail: 900;
     readonly hero: 1180;
 };
+/**
+ * BiBo's text ladder (owner's round 3 pick, 2026-10-31: "Roomy"): title 36, heading 22, body 17,
+ * small 15, caption 13, and nothing in between. Same keys as `Type`, so tcgscan-app swaps the
+ * whole scale by exporting this as its `Type`; michi keeps `Type`. Page titles (36) are drawn by
+ * the shell; in-screen titles take the heading step.
+ */
+export declare const TypeBibo: {
+    readonly display: {
+        readonly fontSize: 36;
+        readonly lineHeight: 42;
+        readonly fontWeight: "800";
+        readonly letterSpacing: -0.5;
+    };
+    readonly title: {
+        readonly fontSize: 22;
+        readonly lineHeight: 28;
+        readonly fontWeight: "700";
+        readonly letterSpacing: -0.2;
+    };
+    readonly heading: {
+        readonly fontSize: 22;
+        readonly lineHeight: 28;
+        readonly fontWeight: "700";
+        readonly letterSpacing: -0.2;
+    };
+    readonly subtitle: {
+        readonly fontSize: 17;
+        readonly lineHeight: 23;
+        readonly fontWeight: "700";
+    };
+    readonly body: {
+        readonly fontSize: 17;
+        readonly lineHeight: 24;
+        readonly fontWeight: "500";
+    };
+    readonly bodySm: {
+        readonly fontSize: 15;
+        readonly lineHeight: 21;
+        readonly fontWeight: "500";
+    };
+    readonly label: {
+        readonly fontSize: 15;
+        readonly lineHeight: 20;
+        readonly fontWeight: "600";
+    };
+    readonly caption: {
+        readonly fontSize: 13;
+        readonly lineHeight: 18;
+        readonly fontWeight: "500";
+    };
+    readonly data: {
+        readonly fontSize: 15;
+        readonly lineHeight: 20;
+        readonly fontWeight: "600";
+        readonly fontVariant: ["tabular-nums"];
+    };
+    readonly overline: {
+        readonly fontSize: 13;
+        readonly lineHeight: 18;
+        readonly fontWeight: "700";
+        readonly letterSpacing: 1;
+        readonly textTransform: "uppercase";
+    };
+};
+/**
+ * BiBo's corner ladder (owner's picks: round 1's 8 / 14 / 18, extended in round 3): card images 6,
+ * chips 8, buttons and inputs 14, cards 18, sheets 28, pills round. Same keys as `Radius`, swapped
+ * in by tcgscan-app; the small keys all land on the image step.
+ */
+export declare const RadiusBibo: {
+    readonly xs: 6;
+    readonly tag: 6;
+    readonly sm: 6;
+    readonly thumb: 6;
+    readonly control: 14;
+    readonly panel: 18;
+    readonly actionBar: 14;
+    readonly lg: 18;
+    readonly sheet: 28;
+    readonly pill: 999;
+};

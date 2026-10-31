@@ -136,3 +136,40 @@ export const Breakpoints = {
   rail: 900,
   hero: 1180,
 } as const;
+
+/**
+ * BiBo's text ladder (owner's round 3 pick, 2026-10-31: "Roomy"): title 36, heading 22, body 17,
+ * small 15, caption 13, and nothing in between. Same keys as `Type`, so tcgscan-app swaps the
+ * whole scale by exporting this as its `Type`; michi keeps `Type`. Page titles (36) are drawn by
+ * the shell; in-screen titles take the heading step.
+ */
+export const TypeBibo = {
+  display: { fontSize: 36, lineHeight: 42, fontWeight: '800', letterSpacing: -0.5 },
+  title: { fontSize: 22, lineHeight: 28, fontWeight: '700', letterSpacing: -0.2 },
+  heading: { fontSize: 22, lineHeight: 28, fontWeight: '700', letterSpacing: -0.2 },
+  subtitle: { fontSize: 17, lineHeight: 23, fontWeight: '700' },
+  body: { fontSize: 17, lineHeight: 24, fontWeight: '500' },
+  bodySm: { fontSize: 15, lineHeight: 21, fontWeight: '500' },
+  label: { fontSize: 15, lineHeight: 20, fontWeight: '600' },
+  caption: { fontSize: 13, lineHeight: 18, fontWeight: '500' },
+  data: { fontSize: 15, lineHeight: 20, fontWeight: '600', fontVariant: ['tabular-nums'] },
+  overline: { fontSize: 13, lineHeight: 18, fontWeight: '700', letterSpacing: 1, textTransform: 'uppercase' },
+} as const satisfies Record<TypeToken, TextStyleToken>;
+
+/**
+ * BiBo's corner ladder (owner's picks: round 1's 8 / 14 / 18, extended in round 3): card images 6,
+ * chips 8, buttons and inputs 14, cards 18, sheets 28, pills round. Same keys as `Radius`, swapped
+ * in by tcgscan-app; the small keys all land on the image step.
+ */
+export const RadiusBibo = {
+  xs: 6,
+  tag: 6,
+  sm: 6,
+  thumb: 6,
+  control: 14,
+  panel: 18,
+  actionBar: 14,
+  lg: 18,
+  sheet: 28,
+  pill: 999,
+} as const satisfies Record<keyof typeof Radius, number>;

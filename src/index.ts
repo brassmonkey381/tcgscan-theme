@@ -38,6 +38,8 @@ export {
 
 export {
   Type,
+  TypeBibo,
+  RadiusBibo,
   Spacing,
   Radius,
   Content,

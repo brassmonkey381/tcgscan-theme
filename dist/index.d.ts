@@ -11,5 +11,5 @@
  */
 export { Colors, Chrome, ChromeBibo, BrandBibo, Themes, THEME_VARIANTS, THEME_VARIANT_LABELS, type Scheme, type Palette, type ThemeColor, type ThemeVariant, type ThemeVariantColors, } from './palettes.ts';
 export { VARIANTS, VARIANT_LIST, isDarkHex, type Tokens, type VariantId, type PaletteTokens, } from './variants.ts';
-export { Type, Spacing, Radius, Content, Breakpoints, type TypeToken, type TextStyleToken, } from './tokens.ts';
+export { Type, TypeBibo, RadiusBibo, Spacing, Radius, Content, Breakpoints, type TypeToken, type TextStyleToken, } from './tokens.ts';
 export { Fonts, BottomTabInset } from './platform.ts';
