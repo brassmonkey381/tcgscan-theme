@@ -332,7 +332,9 @@ const BIBO = make({
             backgroundElement: '#FFEFC2',
             // Light enough that cyan-ink links still clear 4.5:1 on a selected row.
             backgroundSelected: '#FFE8A3',
-            textSecondary: '#4A5878',
+            // Navy, like the body (owner's pick, 2026-10-30): secondary text differs by size, not colour.
+            // The grey #4A5878 survives as `muted`, for small caps labels.
+            textSecondary: '#0A2038',
         },
         dark: {
             text: '#EAF2FF',

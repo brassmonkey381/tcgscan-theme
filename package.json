@@ -1,6 +1,6 @@
 {
   "name": "tcgscan-theme",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Shared design tokens for the TCGScan apps: brand color palettes (light/dark, four variants), the type scale, spacing and radii, and a WCAG contrast checker. The single source both tcgscan-app and michi-maker theme from.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
