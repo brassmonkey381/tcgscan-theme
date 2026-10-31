@@ -17,7 +17,7 @@ import { VARIANTS, isDarkHex } from "./variants.js";
 function resolve(v, scheme) {
     const roles = v.colors[scheme];
     const dark = isDarkHex(roles.background);
-    return { ...roles, ...v.palette, ...(dark ? v.paletteDark : {}) };
+    return { ...roles, ...v.palette, ...(dark ? v.paletteDark : {}), heading: v.heading?.[scheme] ?? roles.text };
 }
 const themeFor = (v) => ({
     light: resolve(v, 'light'),

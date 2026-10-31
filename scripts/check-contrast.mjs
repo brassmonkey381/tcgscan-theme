@@ -74,6 +74,7 @@ function pairsFor(c) {
     pairs.push({ fg: c.danger, bg, label: `danger on ${name}`, level: 'AA' });
   }
   pairs.push({ fg: c.warning, bg: c.background, label: 'warning on background', level: 'AA' });
+  pairs.push({ fg: c.heading, bg: c.background, label: 'heading on background', level: 'AA' });
   // Primary-button label on accent — bold, so WCAG large-text threshold (3:1).
   pairs.push({ fg: c.accentText, bg: c.accent, label: 'accentText on accent (button)', level: 'AA-large' });
   // accentSoft is a text-bearing chip/cell tint (labels sit on it).

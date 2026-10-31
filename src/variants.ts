@@ -148,7 +148,11 @@ const NEUTRAL = {
 };
 
 type PaletteRoles = typeof NEUTRAL.palette;
-export type Tokens = Omit<typeof NEUTRAL, 'paletteDark'> & { paletteDark: Partial<PaletteRoles> };
+export type Tokens = Omit<typeof NEUTRAL, 'paletteDark'> & {
+  paletteDark: Partial<PaletteRoles>;
+  /** Section heading ink per scheme; unset falls back to the scheme's `text` (palettes.ts). */
+  heading?: { light?: string; dark?: string };
+};
 type ColorSet = { light: ColorRoles; dark: ColorRoles };
 type Deep = {
   colors?: { light?: Partial<ColorRoles>; dark?: Partial<ColorRoles> };
@@ -157,6 +161,7 @@ type Deep = {
   surface?: Partial<Tokens['surface']>;
   radius?: Partial<Tokens['radius']>;
   slotBacking?: string;
+  heading?: { light?: string; dark?: string };
 };
 
 function make(o: Deep): Tokens {
@@ -171,6 +176,7 @@ function make(o: Deep): Tokens {
     surface: { ...b.surface, ...o.surface },
     radius: { ...b.radius, ...o.radius },
     slotBacking: o.slotBacking ?? b.slotBacking,
+    heading: o.heading,
   };
 }
 
@@ -414,6 +420,9 @@ const BIBO = make({
   // Chip 8, button 14, card 18, sheet 28 (SPEC "Shape and space").
   radius: { thumb: 8, control: 14, panel: 18, actionBar: 14, lg: 18, sheet: 28 },
   slotBacking: '#FFEFC2',
+  // Section headings and page titles in deep amber on the yellow ground (owner's style pick,
+  // 2026-10-30; 5.5:1 on yellow-50), yellow on navy in dark.
+  heading: { light: '#8A5A00', dark: '#FEC634' },
 });
 
 export const VARIANTS = {

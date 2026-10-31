@@ -141,6 +141,7 @@ function make(o) {
         surface: { ...b.surface, ...o.surface },
         radius: { ...b.radius, ...o.radius },
         slotBacking: o.slotBacking ?? b.slotBacking,
+        heading: o.heading,
     };
 }
 // ── Warm Vintage Binder ──────────────────────────────────────────────────────
@@ -378,6 +379,9 @@ const BIBO = make({
     // Chip 8, button 14, card 18, sheet 28 (SPEC "Shape and space").
     radius: { thumb: 8, control: 14, panel: 18, actionBar: 14, lg: 18, sheet: 28 },
     slotBacking: '#FFEFC2',
+    // Section headings and page titles in deep amber on the yellow ground (owner's style pick,
+    // 2026-10-30; 5.5:1 on yellow-50), yellow on navy in dark.
+    heading: { light: '#8A5A00', dark: '#FEC634' },
 });
 export const VARIANTS = {
     neutral: NEUTRAL,

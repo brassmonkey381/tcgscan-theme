@@ -134,6 +134,11 @@ declare const NEUTRAL: {
 type PaletteRoles = typeof NEUTRAL.palette;
 export type Tokens = Omit<typeof NEUTRAL, 'paletteDark'> & {
     paletteDark: Partial<PaletteRoles>;
+    /** Section heading ink per scheme; unset falls back to the scheme's `text` (palettes.ts). */
+    heading?: {
+        light?: string;
+        dark?: string;
+    };
 };
 export declare const VARIANTS: {
     readonly neutral: {

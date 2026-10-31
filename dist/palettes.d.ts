@@ -11,7 +11,10 @@
 import { type Tokens } from './variants.ts';
 export type Scheme = 'light' | 'dark';
 /** The resolved palette for one scheme: the 5 scheme roles + the full semantic palette. */
-export type Palette = Tokens['colors']['light'] & Tokens['palette'];
+export type Palette = Tokens['colors']['light'] & Tokens['palette'] & {
+    /** Section headings and page titles: the variant's own ink, else the scheme's `text`. */
+    heading: string;
+};
 export type ThemeColor = keyof Palette;
 /** A full light+dark pair. */
 export interface ThemeVariantColors {

@@ -13,7 +13,10 @@ import { VARIANTS, isDarkHex, type Tokens } from './variants.ts';
 export type Scheme = 'light' | 'dark';
 
 /** The resolved palette for one scheme: the 5 scheme roles + the full semantic palette. */
-export type Palette = Tokens['colors']['light'] & Tokens['palette'];
+export type Palette = Tokens['colors']['light'] & Tokens['palette'] & {
+  /** Section headings and page titles: the variant's own ink, else the scheme's `text`. */
+  heading: string;
+};
 export type ThemeColor = keyof Palette;
 
 /** A full light+dark pair. */
@@ -30,7 +33,7 @@ export interface ThemeVariantColors {
 function resolve(v: Tokens, scheme: Scheme): Palette {
   const roles = v.colors[scheme];
   const dark = isDarkHex(roles.background);
-  return { ...roles, ...v.palette, ...(dark ? v.paletteDark : {}) } as Palette;
+  return { ...roles, ...v.palette, ...(dark ? v.paletteDark : {}), heading: v.heading?.[scheme] ?? roles.text } as Palette;
 }
 
 const themeFor = (v: Tokens): ThemeVariantColors => ({
