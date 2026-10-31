@@ -13,6 +13,7 @@ export {
   Colors,
   Chrome,
   ChromeBibo,
+  BrandBibo,
   Themes,
   THEME_VARIANTS,
   THEME_VARIANT_LABELS,

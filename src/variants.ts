@@ -355,15 +355,19 @@ const TCGSCAN_BRAND = make({
  *   yellow is never text on a light ground, so `link` is cyan-ink rather than the accent.
  * - Cyan-400 glows only on navy. On paper, cyan is cyan-ink #00709F.
  * - ink-muted #4A5878 is the lightest text allowed on white.
+ *
+ * Two yellows (owner, 2026-10-30, overriding the spec's "calm paper" ground): the page ground is
+ * yellow-50 #FFF6DA and yellow-500 #FEC634 is the band and frame colour, so the app reads as mostly
+ * yellow with navy screens and cyan pixels. Lines and panels on that ground are warm, not grey-blue.
  */
 const BIBO = make({
   colors: {
     light: {
       text: '#0A2038',
-      background: '#F5F7FB',
-      backgroundElement: '#EEF2F8',
-      // Lighter than the spec's line #D9DFEA so cyan-ink links still clear 4.5:1 on a selected row.
-      backgroundSelected: '#E4E9F2',
+      background: '#FFF6DA',
+      backgroundElement: '#FFEFC2',
+      // Light enough that cyan-ink links still clear 4.5:1 on a selected row.
+      backgroundSelected: '#FFE8A3',
       textSecondary: '#4A5878',
     },
     dark: {
@@ -375,10 +379,10 @@ const BIBO = make({
     },
   },
   palette: {
-    accent: '#FEC634', accentText: '#0A2038', accentSoft: '#FFF6DA', link: '#00709F',
-    selectionSoft: '#FFF6DA', selectionTint: '#FFE9A8',
-    surface: '#FFFFFF', panel: '#EEF2F8', panelAlt: '#F5F7FB',
-    controlBorder: '#D9DFEA', handle: '#C3CCDC', hairline: '#D9DFEA', hairlineStrong: '#C3CCDC',
+    accent: '#FEC634', accentText: '#0A2038', accentSoft: '#FFEFC2', link: '#00709F',
+    selectionSoft: '#FFEFC2', selectionTint: '#FFE8A3',
+    surface: '#FFFFFF', panel: '#FFEFC2', panelAlt: '#FFF6DA',
+    controlBorder: '#E6CB7E', handle: '#D9B85C', hairline: '#EED79A', hairlineStrong: '#E0C06A',
     ink: '#0A2038', ink2: '#12295A', ink3: '#1E3A78', ink4: '#4A5878',
     muted: '#4A5878', muted2: '#66728C', muted3: '#8590A6', muted4: '#A3ACBF',
     danger: '#C2410C', dangerAlt: '#A8380A', dangerBg: '#FDE8DF', success: '#127A4B',
@@ -407,7 +411,7 @@ const BIBO = make({
   },
   // Chip 8, button 14, card 18, sheet 28 (SPEC "Shape and space").
   radius: { thumb: 8, control: 14, panel: 18, actionBar: 14, lg: 18, sheet: 28 },
-  slotBacking: '#EEF2F8',
+  slotBacking: '#FFEFC2',
 });
 
 export const VARIANTS = {
