@@ -81,6 +81,10 @@ export const Chrome = {
     link: '#8AB4FF',
     /** Success mark on chrome (the toast check). */
     success: '#4ED18C',
+    /** A failure line on chrome: readable on the dark glass (8.6:1 and up). */
+    danger: '#FF9A6B',
+    /** A warning line on chrome. */
+    warning: '#FFD36B',
 };
 /**
  * BiBo's chrome (tcgscan-app's rebrand): the same fixed, scheme-independent layer, in the brand's
@@ -111,6 +115,10 @@ export const ChromeBibo = {
     link: '#3FD8FF',
     /** Success mark on chrome (the toast check). */
     success: '#4ED18C',
+    /** A failure line on the navy chrome (9.3:1 on deepest); the page's danger is about 3:1 here. */
+    danger: '#FF9A6B',
+    /** A warning line on the navy chrome. */
+    warning: '#FFD36B',
 };
 /**
  * BiBo's brand hardware, by name (marketing-studio apps/tcgscan/rebrand/SPEC.md): the fixed colours
